@@ -36,7 +36,7 @@ CC          = @CC@
 CPPFLAGS    = @CPPFLAGS@
 CFLAGS      = @CFLAGS@
 
-all: info dvi
+all: info
 
 TEXISRC = \
 acronyms.texi       fdrawcmd.texi       ioctl.texi          superformat.texi \
@@ -79,68 +79,68 @@ Fdutils.texi: $(TEXISRC) texi-linearize
 
 # Don't cd, to avoid breaking install-sh references.
 install-info: info
-	$(top_srcdir)/mkinstalldirs $(infodir)
+	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(infodir)
 	if test -f fdutils.info; then \
 	  for i in fdutils.info*; do \
-	    $(INSTALL_DATA) $$i $(infodir)/$$i; \
+	    $(INSTALL_DATA) $$i $(DESTDIR)$(infodir)/$$i; \
 	  done; \
 	else \
 	  for i in $(srcdir)/fdutils.info*; do \
-	    $(INSTALL_DATA) $$i $(infodir)/`echo $$i | sed 's|^$(srcdir)/||'`; \
+	    $(INSTALL_DATA) $$i $(DESTDIR)$(infodir)/`echo $$i | sed 's|^$(srcdir)/||'`; \
 	  done; \
 	fi; \
 	if [ -n "$(INSTALL_INFO)" ] ; then \
 		if [ -f $(infodir)/dir.info ] ; then \
-			$(INSTALL_INFO) $(infodir)/fdutils.info $(infodir)/dir.info; \
+			$(INSTALL_INFO) $(infodir)/fdutils.info $(DESTDIR)$(infodir)/dir.info; \
 		fi; \
 		if [ -f $(infodir)/dir ] ; then \
-			$(INSTALL_INFO) $(infodir)/fdutils.info $(infodir)/dir; \
+			$(INSTALL_INFO) $(infodir)/fdutils.info $(DESTDIR)$(infodir)/dir; \
 		fi; \
 	fi
 
 
 
 install-man:
-	$(top_srcdir)/mkinstalldirs $(mandir1)
-	$(top_srcdir)/mkinstalldirs $(mandir4)
-	$(top_srcdir)/mkinstalldirs $(mandir8)
+	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(mandir1)
+	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(mandir4)
+	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(mandir8)
 	for i in $(MANPAGES1); do \
 		install -c -m $(MANPERM) -o $(UID) -g $(GID) \
-			$(srcdir)/$$i $(mandir1)/$$i; \
+			$(srcdir)/$$i $(DESTDIR)$(mandir1)/$$i; \
 	done
 
 	for i in $(MANPAGES4); do \
 		install -c -m $(MANPERM) -o $(UID) -g $(GID) \
-			$(srcdir)/$$i $(mandir4)/$$i; \
+			$(srcdir)/$$i $(DESTDIR)$(mandir4)/$$i; \
 	done
 
 #	for i in $(MANPAGES8); do \
 #		install -c -m $(MANPERM) -o $(UID) -g $(GID) \
-#			$(srcdir)/$$i $(mandir8)/$$i; \
+#			$(srcdir)/$$i $(DESTDIR)$(mandir8)/$$i; \
 #	done
 
 	( cd $(mandir1); \
-		ln -sf fdmount.1 $(mandir1)/fdumount.1; \
-		ln -sf fdmount.1 $(mandir1)/fdlist.1; \
-		ln -sf fdmount.1 $(mandir1)/fdmountd.1; \
-		ln -sf xdfcopy.1 $(mandir1)/xdfformat.1 \
+		ln -sf fdmount.1 $(DESTDIR)$(mandir1)/fdumount.1; \
+		ln -sf fdmount.1 $(DESTDIR)$(mandir1)/fdlist.1; \
+		ln -sf fdmount.1 $(DESTDIR)$(mandir1)/fdmountd.1; \
+		ln -sf xdfcopy.1 $(DESTDIR)$(mandir1)/xdfformat.1 \
 	)
 
 install-zman:
 	for i in $(MANPAGES1); do \
 		gzip < $(srcdir)/$$i >_; \
 		install -c -m $(MANPERM) -o $(UID) -g $(GID) \
-			_ $(mandir1)/$$i.gz; \
+			_ $(DESTDIR)$(mandir1)/$$i.gz; \
 	done
 	for i in $(MANPAGES4); do \
 		gzip < $(srcdir)/$$i >_; \
 		install -c -m $(MANPERM) -o $(UID) -g $(GID) \
-			_ $(mandir4)/$$i.gz; \
+			_ $(DESTDIR)$(mandir4)/$$i.gz; \
 	done
 	for i in $(MANPAGES8); do \
 		gzip < $(srcdir)/$$i >_; \
 		install -c -m $(MANPERM) -o $(UID) -g $(GID) \
-			_ $(mandir8)/$$i.gz; \
+			_ $(DESTDIR)$(mandir8)/$$i.gz; \
 	done
 	rm _
 

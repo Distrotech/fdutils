@@ -34,3 +34,6 @@ dvi:
 
 install-info:
 	$(MAKE) -C doc install-info
+
+distclean: clean
+	$(MAKE) -C src spotless
