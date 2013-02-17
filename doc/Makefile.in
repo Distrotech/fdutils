@@ -91,10 +91,10 @@ install-info: info
 	  done; \
 	fi; \
 	if [ -n "$(INSTALL_INFO)" ] ; then \
-		if [ -f $(infodir)/dir.info ] ; then \
+		if [ -f $(DESTDIR)$(infodir)/dir.info ] ; then \
 			$(INSTALL_INFO) $(infodir)/fdutils.info $(DESTDIR)$(infodir)/dir.info; \
 		fi; \
-		if [ -f $(infodir)/dir ] ; then \
+		if [ -f $(DESTDIR)$(infodir)/dir ] ; then \
 			$(INSTALL_INFO) $(infodir)/fdutils.info $(DESTDIR)$(infodir)/dir; \
 		fi; \
 	fi
