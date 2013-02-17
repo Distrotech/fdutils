@@ -79,6 +79,7 @@ Fdutils.texi: $(TEXISRC) texi-linearize
 
 # Don't cd, to avoid breaking install-sh references.
 install-info: info
+	$(INSTALL) -d $(DESTDIR)$(infodir)
 	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(infodir)
 	if test -f fdutils.info; then \
 	  for i in fdutils.info*; do \
@@ -101,6 +102,9 @@ install-info: info
 
 
 install-man:
+	$(INSTALL) -d $(DESTDIR)$(mandir1)
+	$(INSTALL) -d $(DESTDIR)$(mandir4)
+	$(INSTALL) -d $(DESTDIR)$(mandir8)
 	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(mandir1)
 	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(mandir4)
 	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(mandir8)
