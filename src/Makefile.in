@@ -52,7 +52,7 @@ SPERM=4750
 #we only people in group floppy to run priviledged programs
 MANPERM = 644
 UID	= root
-GID	= floppy
+GID	= root
 
 
 
@@ -128,15 +128,15 @@ install-bin: all
 	$(top_srcdir)/mkinstalldirs $(bindir)
 	$(INSTALL) -d $(DESTDIR)$(bindir)
 	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) $(srcdir)/MAKEFLOPPIES $(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) diskd $(DESTDIR)$(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) diskseekd $(DESTDIR)$(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) floppycontrol $(DESTDIR)$(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) floppymeter $(DESTDIR)$(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) getfdprm $(DESTDIR)$(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) setfdprm $(DESTDIR)$(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) fdrawcmd $(DESTDIR)$(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) superformat $(DESTDIR)$(bindir)
-	$(INSTALL) -c -s -m $(PERM) -o $(UID) -g $(GID) xdfcopy $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) diskd $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) diskseekd $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) floppycontrol $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) floppymeter $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) getfdprm $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) setfdprm $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) fdrawcmd $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) superformat $(DESTDIR)$(bindir)
+	$(INSTALL) -c -m $(PERM) -o $(UID) -g $(GID) xdfcopy $(DESTDIR)$(bindir)
 	( cd $(bindir); \
 	ln -sf xdfcopy $(DESTDIR)$(bindir)/xdfformat; \
 	ln -sf fdmount $(DESTDIR)$(bindir)/fdumount; \
